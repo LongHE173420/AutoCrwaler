@@ -34,7 +34,7 @@ export class TikTokCrawlService {
                 });
 
                 child.stderr?.on('data', (data) => {
-                    process.stdout.write(`\n  [YTDLP ERROR] ${data}`);
+                    console.error(`[YTDLP ERROR] ${data}`);
                 });
 
                 child.on('close', (code) => {
@@ -222,7 +222,7 @@ export class TikTokCrawlService {
             let checkedCount = 0;
             let savedInSeed = 0;
 
-            const output = await this.smartYtdlp([seed, '--flat-playlist', '--get-url', '--playlist-end', '10']);
+            const output = await this.smartYtdlp([seed, '--flat-playlist', '--get-url', '--playlist-end', perSeedLimit.toString()]);
             if (!output || output.trim().length === 0) {
                 console.error(`  [LỖI NGUỒN] Kênh không có video hoặc không tồn tại: ${seed}`);
                 return 0;
@@ -261,7 +261,7 @@ export class TikTokCrawlService {
             const seedUrls = testUrl ? [testUrl] : (ENV.TIKTOK_SEED_URLS || []);
             if (seedUrls.length === 0) return 0;
 
-            const perSeedLimit = Math.max(1, Math.floor(limit / seedUrls.length));
+            const perSeedLimit = Math.max(10, Math.ceil(limit / seedUrls.length));
             let totalSaved = 0;
 
             console.log(`\n=== BẮT ĐẦU CÀO VIDEO (Tổng: ${limit} | Kênh: ~${perSeedLimit}) ===`);

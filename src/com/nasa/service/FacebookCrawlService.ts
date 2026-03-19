@@ -62,7 +62,6 @@ export class FacebookCrawlService {
                 '--no-warnings',
                 '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             ];
-            // Facebook thường cần cookie trình duyệt để ổn định
             if (ENV.TIKTOK_BROWSER) {
                 args.push('--cookies-from-browser', ENV.TIKTOK_BROWSER);
             }
@@ -179,28 +178,22 @@ export class FacebookCrawlService {
             let savedInSeed = 0;
             let checkedCount = 0;
 
-            // Chuẩn hóa URL: Xóa dấu gạch chéo ở cuối để yt-dlp dễ nhận diện hơn
             let cleanSeed = seed.trim();
             if (cleanSeed.endsWith('/')) cleanSeed = cleanSeed.slice(0, -1);
 
             console.log(`\n--- Quét nguồn FB: ${cleanSeed} ---`);
 
-            // Nếu seed là URL video trực tiếp, xử lý ngay. 
-            // - watch?v=... hoặc fb.watch/...
-            // - /videos/ID hoặc /reels/ID (ID là dạng số)
-            const isDirectVideo = (cleanSeed.includes('watch') && cleanSeed.includes('v=')) || 
-                                 cleanSeed.includes('fb.watch') || 
-                                 (cleanSeed.includes('/videos/') && cleanSeed.split('/videos/')[1].match(/^\d+/)) ||
-                                 (cleanSeed.includes('/reels/') && cleanSeed.split('/reels/')[1].match(/^\d+/));
-            
+            const isDirectVideo = (cleanSeed.includes('watch') && cleanSeed.includes('v=')) ||
+                cleanSeed.includes('fb.watch') ||
+                (cleanSeed.includes('/videos/') && cleanSeed.split('/videos/')[1].match(/^\d+/)) ||
+                (cleanSeed.includes('/reels/') && cleanSeed.split('/reels/')[1].match(/^\d+/));
+
             if (isDirectVideo) {
                 console.log(`  [FB] Nhận diện link video trực tiếp. Đang xử lý...`);
                 const result = await this.processSingleVideo(cleanSeed, finalDir, tmpDir);
                 return result.success ? 1 : 0;
             }
 
-            // Thử lấy danh sách video bằng yt-dlp
-            // Một số bản yt-dlp cần link m.facebook.com hoặc mbasic.facebook.com để quét playlist tốt hơn
             const tryUrls = [
                 cleanSeed,
                 cleanSeed.replace('www.facebook.com', 'mbasic.facebook.com'),
@@ -213,7 +206,7 @@ export class FacebookCrawlService {
                     output = await this.smartYtdlp([tryUrl, '--flat-playlist', '--print', 'webpage_url', '--playlist-end', '10']);
                     if (output && output.trim().length > 0) break;
                 } catch (e) {
-                    // Tiếp tục thử URL khác
+
                 }
             }
             if (!output || output.trim().length === 0) {

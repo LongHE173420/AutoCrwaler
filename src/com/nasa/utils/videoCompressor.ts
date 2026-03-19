@@ -41,7 +41,6 @@ export async function compressVideoTo5MB(inputPath: string, outputDir: string): 
 
         const MAX_RAW_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
 
-        // 0. Nếu file gốc > 10MB, bỏ qua luôn theo yêu cầu
         if (currentSize > MAX_RAW_SIZE_BYTES) {
             console.log(`[COMPRESS] SKIPPED: Raw file too large (${(currentSize / 1024 / 1024).toFixed(2)}MB > 10MB).`);
             throw new Error(`Video too large to compress: ${(currentSize / 1024 / 1024).toFixed(2)}MB > 10MB`);
@@ -67,13 +66,13 @@ export async function compressVideoTo5MB(inputPath: string, outputDir: string): 
             const command = ffmpeg(inputPath)
                 .videoCodec('libx264')
                 .audioCodec('aac')
-                .audioBitrate('96k') // Giảm audio để tiết kiệm size theo yêu cầu
+                .audioBitrate('96k')
                 .outputOptions([
-                    '-preset slow',           // Nén kỹ để có chất lượng tốt nhất
-                    '-crf 26',                // 🔥 Nén mạnh hơn (23 → 26) theo yêu cầu
+                    '-preset slow',
+                    '-crf 26',
                     '-movflags +faststart',
-                    '-vf scale=-2:720',       // Giữ tỉ lệ chuẩn 720p
-                    '-profile:v main',        // Tương thích mobile tốt
+                    '-vf scale=-2:720',
+                    '-profile:v main',
                     '-level 3.1'
                 ])
                 .output(outputPath);
@@ -82,7 +81,7 @@ export async function compressVideoTo5MB(inputPath: string, outputDir: string): 
                 const proc = (command as any).ffmpegProc;
                 const pid = proc?.pid;
                 console.error(`[COMPRESS] TIMEOUT reached (${ENV.COMPRESS_TIMEOUT_MS}ms). Killing process ${pid}...`);
-                
+
                 if (process.platform === 'win32' && pid) {
                     exec(`taskkill /F /T /PID ${pid}`, (err: any) => {
                         if (err) console.error(`[COMPRESS] Taskkill error: ${err.message}`);
