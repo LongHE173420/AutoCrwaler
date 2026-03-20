@@ -29,11 +29,10 @@ export class CrawlerWorker {
         try {
             console.log(`\n[${new Date().toLocaleString()}] --- BẮT ĐẦU CHU KỲ CRAWL MỚI ---`);
 
-            // 1. Dọn dẹp video đã đăng xong
+
             const cleaned = await MysqlStore.cleanupFullyPostedVideos();
             if (cleaned > 0) console.log(`  * Đã dọn dẹp ${cleaned} video cũ.`);
 
-            // 2. Crawl TikTok
             let tiktokCount = 0;
             if (ENV.CRAWL_TIKTOK_ENABLED) {
                 this.logger.info("CRAWL_TIKTOK_START", { limit: ENV.CRAWL_LIMIT });
@@ -75,18 +74,17 @@ export class CrawlerWorker {
 
             if (!ENV.CRAWL_TIKTOK_ENABLED) {
                 this.logger.warn("CRAWL_DISABLED_BY_CONFIG");
-                return; // TikTok tắt và FB cũng đang bị comment nên dừng worker
+                return;
             }
 
-            // Initial run
+
             await this.runCleanup();
             this.runCrawl();
 
-            // Set intervals
             const crawlInterval = ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
             setInterval(() => this.runCrawl(), crawlInterval);
 
-            const cleanupInterval = 60 * 60 * 1000; // 60 min
+            const cleanupInterval = 60 * 60 * 1000;
             setInterval(() => this.runCleanup(), cleanupInterval);
 
             this.logger.info("CRAWLER_WORKER_STARTED", {
