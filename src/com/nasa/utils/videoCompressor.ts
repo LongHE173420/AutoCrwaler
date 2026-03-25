@@ -60,7 +60,7 @@ export async function compressVideoTo5MB(inputPath: string, outputDir: string): 
         }
 
         // 3. Nén video với chất lượng cố định (CRF 26, Slow) để có độ nét tốt nhất
-        console.log(`[COMPRESS] ${(currentSize / 1024 / 1024).toFixed(2)}MB → Target standard (CRF 26, Slow)`);
+        console.log(`[COMPRESS] ${(currentSize / 1024 / 1024).toFixed(2)}MB → Target standard (CRF 26, fast)`);
 
         return new Promise((resolve, reject) => {
             const command = ffmpeg(inputPath)
@@ -68,7 +68,7 @@ export async function compressVideoTo5MB(inputPath: string, outputDir: string): 
                 .audioCodec('aac')
                 .audioBitrate('96k')
                 .outputOptions([
-                    '-preset slow',
+                    '-preset fast',
                     '-crf 26',
                     '-movflags +faststart',
                     '-vf scale=-2:720',

@@ -1,0 +1,21 @@
+{"level":30,"time":"09:48:36.133","app":"TikTokCrawler","logger":"CrawlerWorker","crawlInterval":1800,"cleanupInterval":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:48:36.136","app":"TikTokCrawler","logger":"CrawlerWorker","limit":50,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"09:52:59.262","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7618943170738621716","err":"Compression failed: Size still too large (5.25MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"09:58:03.043","app":"TikTokCrawler","logger":"TikTokCrawl","pid":17104,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"09:58:03.062","app":"TikTokCrawler","logger":"TikTokCrawl","videoId":"7618596713254653205","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"10:05:32.300","app":"TikTokCrawler","logger":"TikTokCrawl","pid":21028,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"10:05:32.901","app":"TikTokCrawler","logger":"TikTokCrawl","videoId":"7616776857282759957","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"10:05:36.284","app":"TikTokCrawler","logger":"TikTokCrawl","pid":21028,"err":"Command failed: taskkill /F /T /PID 21028\nERROR: The process \"21028\" not found.\r\n","msg":"TASKKILL_ERROR"}
+{"level":50,"time":"11:11:13.403","app":"TikTokCrawler","logger":"TikTokCrawl","pid":7544,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":40,"time":"11:11:13.618","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7616775457803095316","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"META_FETCH_FAIL"}
+{"level":40,"time":"11:11:21.208","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7616718289087089940","err":"yt-dlp exited with code 1","msg":"META_FETCH_FAIL"}
+{"level":50,"time":"14:57:43.140","app":"TikTokCrawler","logger":"TikTokCrawl","pid":10096,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":40,"time":"14:57:43.365","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7616348843252272405","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"META_FETCH_FAIL"}
+{"level":50,"time":"14:57:51.489","app":"TikTokCrawler","logger":"TikTokCrawl","pid":10096,"err":"Command failed: taskkill /F /T /PID 10096\nERROR: The process \"10096\" not found.\r\n","msg":"TASKKILL_ERROR"}
+{"level":50,"time":"14:58:23.239","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7615910458675137812","err":"Video too large to compress: 14.56MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"14:58:42.730","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7615892046888324373","err":"Video too large to compress: 10.73MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"14:59:39.565","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7615577346434747669","err":"Compression failed: Size still too large (7.57MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"15:04:17.525","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@caocuongvu/video/7619158514556095764","err":"Compression failed: Size still too large (6.13MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"15:06:11.275","app":"TikTokCrawler","logger":"TikTokCrawl","url":"https://www.tiktok.com/@caocuongvu/video/7613979160536534288","err":"Compression failed: Size still too large (5.43MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"15:07:00.176","app":"TikTokCrawler","logger":"TikTokCrawl","videoId":"7591878861785206037","err":"yt-dlp exited with code 1","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"15:08:09.473","app":"TikTokCrawler","logger":"CrawlerWorker","savedCount":38,"msg":"CRAWL_TIKTOK_COMPLETE"}

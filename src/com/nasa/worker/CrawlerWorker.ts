@@ -5,19 +5,22 @@ import { ENV } from '../config/env';
 import { Log } from '../utils/log';
 
 export class CrawlerWorker {
-    private logger = Log.getLogger('CrawlerWorker');
+    private logger;
     private crawlService: TikTokCrawlService;
     private fbCrawlService: FacebookCrawlService;
     private crawlRunning = false;
+    private seedUrl?: string;
 
-    constructor() {
+    constructor(seedUrl?: string) {
+        this.seedUrl = seedUrl;
+        const loggerName = seedUrl ? `Worker-${seedUrl.split('/').pop()}` : 'CrawlerWorker';
+        this.logger = Log.getLogger(loggerName);
+
         try {
-            const logger = Log.getLogger('TikTokCrawl');
-            this.crawlService = new TikTokCrawlService(logger);
+            this.crawlService = new TikTokCrawlService(Log.getLogger('TikTokCrawl'));
             this.fbCrawlService = new FacebookCrawlService(Log.getLogger('FBCrawl'));
         } catch (e: any) {
-            const logger = Log.getLogger('CrawlerWorker');
-            logger.error("CONSTRUCTOR_FAIL", { err: e.message });
+            this.logger.error("CONSTRUCTOR_FAIL", { err: e.message });
             this.crawlService = null!;
             this.fbCrawlService = null!;
         }
@@ -35,8 +38,8 @@ export class CrawlerWorker {
 
             let tiktokCount = 0;
             if (ENV.CRAWL_TIKTOK_ENABLED) {
-                this.logger.info("CRAWL_TIKTOK_START", { limit: ENV.CRAWL_LIMIT });
-                tiktokCount = await this.crawlService.crawlTikTokVideos(ENV.CRAWL_LIMIT || 20);
+                this.logger.info("CRAWL_TIKTOK_START", { limit: ENV.CRAWL_LIMIT, seedUrl: this.seedUrl });
+                tiktokCount = await this.crawlService.crawlTikTokVideos(ENV.CRAWL_LIMIT || 20, this.seedUrl);
                 this.logger.info("CRAWL_TIKTOK_COMPLETE", { savedCount: tiktokCount });
             } else {
                 this.logger.warn("CRAWL_TIKTOK_DISABLED_BY_CONFIG");

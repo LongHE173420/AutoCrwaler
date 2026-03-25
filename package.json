@@ -5,9 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "test-compress": "ts-node src/test-compress.ts",
-    "test-fb": "ts-node src/test-fb.ts"
+    "dev": "ts-node-dev --respawn src/index.ts"
   },
   "dependencies": {
     "axios": "^1.6.2",
