@@ -18,23 +18,33 @@ export class MasterWorker {
         }
 
         const seeds = ENV.TIKTOK_SEED_URLS || [];
-        for (const seed of seeds) {
-            this.spawnWorker(seed);
+        if (seeds.length === 0) {
+            this.logger.warn("NO_SEEDS_CONFIGURED");
+            return;
         }
+
+        // Chia đều limit cho từng worker (mỗi worker = 1 tài khoản)
+        const totalLimit = ENV.CRAWL_LIMIT || 20;
+        const perWorkerLimit = Math.max(1, Math.ceil(totalLimit / seeds.length));
+
+        this.logger.info("DISTRIBUTING_CRAWL_LIMIT", {
+            totalLimit,
+            perWorkerLimit,
+            totalWorkers: seeds.length
+        });
+
+        // Khởi tạo tất cả workers và chạy song song
+        const workerPromises = seeds.map(seed => this.spawnWorker(seed, perWorkerLimit));
+        await Promise.all(workerPromises);
     }
 
-    private spawnWorker(seedUrl: string) {
+    private async spawnWorker(seedUrl: string, limit: number): Promise<void> {
         try {
-            // Khởi tạo và lưu trữ con worker như một object riêng biệt (không dùng thư viện ngoài)
-            const worker = new CrawlerWorker(seedUrl);
+            const worker = new CrawlerWorker(seedUrl, limit);
             this.workers.push(worker);
 
-            // Bắt đầu worker bất đồng bộ (giống như hoạt động của một thread hoặc coroutine)
-            worker.start().catch((err: any) => {
-                this.logger.error("WORKER_ERROR", { seedUrl, err: err.message });
-            });
-            
-            this.logger.info("SPAWNED_WORKER_FOR_CHANNEL", { seedUrl });
+            this.logger.info("SPAWNED_WORKER_FOR_CHANNEL", { seedUrl, limit });
+            await worker.start();
         } catch (e: any) {
             this.logger.error("SPAWN_WORKER_ERROR", { seedUrl, err: e.message });
         }

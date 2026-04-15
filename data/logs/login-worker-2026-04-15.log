@@ -1,0 +1,69 @@
+{"level":30,"time":"05:26:44.243","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":5,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"05:26:44.244","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":100,"perWorkerLimit":20,"totalWorkers":5,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"05:26:44.244","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:26:44.245","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:26:44.245","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:26:44.246","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:26:44.246","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:26:44.302","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:26:44.309","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:26:44.352","app":"TikTokCrawlerMaster","logger":"Worker-@ainius.net","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:26:44.354","app":"TikTokCrawlerMaster","logger":"Worker-@vinhtech","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:26:44.356","app":"TikTokCrawlerMaster","logger":"Worker-@caocuongvu","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:26:44.357","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:26:44.358","app":"TikTokCrawlerMaster","logger":"Worker-@ainius.net","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:26:44.375","app":"TikTokCrawlerMaster","logger":"Worker-@vinhtech","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:26:44.400","app":"TikTokCrawlerMaster","logger":"Worker-@caocuongvu","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:26:44.425","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"05:32:02.638","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":10888,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:32:02.654","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628823708286733588","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:32:02.884","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":17356,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:32:02.901","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628818083141979412","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:33:50.062","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7583683228159069447","err":"yt-dlp exited with code 1","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":40,"time":"05:34:14.075","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@venessashop/video/7583352383825054983","err":"yt-dlp exited with code 1","msg":"META_FETCH_FAIL"}
+{"level":50,"time":"05:34:41.432","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7582603741145124114","err":"yt-dlp exited with code 1","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:34:55.521","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":20788,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:34:55.542","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628666323014257941","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:35:25.487","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628635401959247125","err":"yt-dlp exited with code 1","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:37:08.487","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":3772,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:37:08.505","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628607119599701269","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:37:12.903","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":1920,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:37:12.923","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628573970706533652","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:39:28.322","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":8860,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:39:28.335","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7121324949595344155","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:41:24.428","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628073446701862164","err":"yt-dlp exited with code 1","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:42:19.621","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":16456,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:42:19.656","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628517672942144788","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:47:25.122","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":17220,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:47:25.160","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628467739245530389","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"05:47:26.236","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","savedCount":0,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"05:49:03.138","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":16160,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:49:03.172","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7627301249754352916","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:49:16.220","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":18172,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:49:16.247","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7113889725768830234","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"05:51:50.551","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","savedCount":17,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"05:54:07.242","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":22824,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:54:07.263","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7621910816287116565","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"05:54:20.257","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":24308,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:54:20.277","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7112790365446409498","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"05:56:44.327","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:56:44.368","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"05:59:11.435","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":24648,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"05:59:11.452","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7620049691559906581","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"06:00:43.804","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","savedCount":1,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"06:02:10.724","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":1828,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:02:10.748","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628206841910119700","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"06:07:19.541","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":22536,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:07:19.563","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628200817186606356","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"06:09:23.459","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":19888,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:09:23.473","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7619158514556095764","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"06:11:31.311","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":23948,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:11:31.333","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7104982663701777691","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"06:12:23.062","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":11452,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:12:23.083","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7628080226165116180","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"06:12:43.332","app":"TikTokCrawlerMaster","logger":"Worker-@ainius.net","seedUrl":"https://www.tiktok.com/@ainius.net","savedCount":18,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"06:14:27.867","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":3376,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:14:27.888","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7618583283290819860","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":50,"time":"06:17:32.207","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","pid":24880,"timeout":300000,"msg":"YTDLP_TIMEOUT"}
+{"level":50,"time":"06:17:32.221","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","videoId":"7627856277275806997","err":"yt-dlp timeout: Process exceeded 300000ms.","msg":"DOWNLOAD_RAW_FAIL"}
+{"level":30,"time":"06:19:07.682","app":"TikTokCrawlerMaster","logger":"Worker-@vinhtech","seedUrl":"https://www.tiktok.com/@vinhtech","savedCount":16,"msg":"CRAWL_TIKTOK_COMPLETE"}

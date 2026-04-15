@@ -9,12 +9,15 @@ export class CrawlerWorker {
     private crawlService: TikTokCrawlService;
     private fbCrawlService: FacebookCrawlService;
     private crawlRunning = false;
-    private seedUrl?: string;
+    private seedUrl: string;
+    private limit: number;
 
-    constructor(seedUrl?: string) {
+    constructor(seedUrl: string, limit: number) {
         this.seedUrl = seedUrl;
-        const loggerName = seedUrl ? `Worker-${seedUrl.split('/').pop()}` : 'CrawlerWorker';
-        this.logger = Log.getLogger(loggerName);
+        this.limit = limit;
+
+        const channelName = seedUrl.split('/').pop() || seedUrl;
+        this.logger = Log.getLogger(`Worker-${channelName}`);
 
         try {
             this.crawlService = new TikTokCrawlService(Log.getLogger('TikTokCrawl'));
@@ -30,29 +33,27 @@ export class CrawlerWorker {
         if (this.crawlRunning) return;
         this.crawlRunning = true;
         try {
-            console.log(`\n[${new Date().toLocaleString()}] --- BẮT ĐẦU CHU KỲ CRAWL MỚI ---`);
-
+            console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- BẮT ĐẦU CHU KỲ CRAWL ---`);
 
             const cleaned = await MysqlStore.cleanupFullyPostedVideos();
             if (cleaned > 0) console.log(`  * Đã dọn dẹp ${cleaned} video cũ.`);
 
             let tiktokCount = 0;
             if (ENV.CRAWL_TIKTOK_ENABLED) {
-                this.logger.info("CRAWL_TIKTOK_START", { limit: ENV.CRAWL_LIMIT, seedUrl: this.seedUrl });
-                tiktokCount = await this.crawlService.crawlTikTokVideos(ENV.CRAWL_LIMIT || 20, this.seedUrl);
-                this.logger.info("CRAWL_TIKTOK_COMPLETE", { savedCount: tiktokCount });
+                this.logger.info("CRAWL_TIKTOK_START", { seedUrl: this.seedUrl, limit: this.limit });
+                // Mỗi worker chỉ crawl seedUrl được giao với đúng limit được phân chia
+                tiktokCount = await this.crawlService.crawlTikTokVideos(this.limit, this.seedUrl);
+                this.logger.info("CRAWL_TIKTOK_COMPLETE", { seedUrl: this.seedUrl, savedCount: tiktokCount });
             } else {
                 this.logger.warn("CRAWL_TIKTOK_DISABLED_BY_CONFIG");
             }
 
             /* 
-            // 3. Crawl Facebook (Tạm thời vô hiệu hóa theo yêu cầu)
-            this.logger.info("CRAWL_FACEBOOK_START", { limit: ENV.CRAWL_LIMIT });
-            const fbCount = await this.fbCrawlService.crawlFacebookVideos(ENV.CRAWL_LIMIT || 20);
-            this.logger.info("CRAWL_FACEBOOK_COMPLETE", { savedCount: fbCount });
+            // Crawl Facebook (Tạm thời vô hiệu hóa)
+            const fbCount = await this.fbCrawlService.crawlFacebookVideos(this.limit);
             */
 
-            console.log(`\n[${new Date().toLocaleString()}] --- HOÀN TẤT CHU KỲ ---`);
+            console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- HOÀN TẤT CHU KỲ (+${tiktokCount} video) ---`);
         } catch (e: any) {
             this.logger.error("CRAWL_ERROR", { err: e.message });
         } finally {
@@ -80,9 +81,8 @@ export class CrawlerWorker {
                 return;
             }
 
-
             await this.runCleanup();
-            this.runCrawl();
+            this.runCrawl(); // Fire and forget — không block, để interval quản lý
 
             const crawlInterval = ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
             setInterval(() => this.runCrawl(), crawlInterval);
@@ -91,8 +91,10 @@ export class CrawlerWorker {
             setInterval(() => this.runCleanup(), cleanupInterval);
 
             this.logger.info("CRAWLER_WORKER_STARTED", {
-                crawlInterval: crawlInterval / 1000,
-                cleanupInterval: cleanupInterval / 1000
+                seedUrl: this.seedUrl,
+                limit: this.limit,
+                crawlIntervalSec: crawlInterval / 1000,
+                cleanupIntervalSec: cleanupInterval / 1000
             });
         } catch (e: any) {
             this.logger.error("CRAWLER_WORKER_START_FAIL", { err: e.message });

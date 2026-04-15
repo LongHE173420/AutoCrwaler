@@ -1,0 +1,20 @@
+{"level":30,"time":"09:43:19.220","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":5,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"09:43:19.220","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":100,"perWorkerLimit":20,"totalWorkers":5,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"09:43:19.221","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"09:43:19.221","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"09:43:19.221","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"09:43:19.222","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"09:43:19.222","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"09:43:19.333","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:43:19.337","app":"TikTokCrawlerMaster","logger":"Worker-@ainius.net","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:43:19.341","app":"TikTokCrawlerMaster","logger":"Worker-@caocuongvu","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:43:19.343","app":"TikTokCrawlerMaster","logger":"Worker-@vinhtech","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:43:19.349","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"crawlIntervalSec":1800,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"09:43:19.354","app":"TikTokCrawlerMaster","logger":"Worker-@anhemtv.vn","seedUrl":"https://www.tiktok.com/@anhemtv.vn","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"09:43:20.447","app":"TikTokCrawlerMaster","logger":"Worker-@ainius.net","seedUrl":"https://www.tiktok.com/@ainius.net","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"09:43:20.460","app":"TikTokCrawlerMaster","logger":"Worker-@caocuongvu","seedUrl":"https://www.tiktok.com/@caocuongvu","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"09:43:20.505","app":"TikTokCrawlerMaster","logger":"Worker-@vinhtech","seedUrl":"https://www.tiktok.com/@vinhtech","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"09:43:20.525","app":"TikTokCrawlerMaster","logger":"Worker-@venessashop","seedUrl":"https://www.tiktok.com/@venessashop","limit":20,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"09:43:42.561","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7622283201880526101","err":"Video too large to compress: 10.30MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"09:44:22.733","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7621774765694536981","err":"Compression failed: Size still too large (5.88MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"09:45:06.243","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@anhemtv.vn/video/7621555239954517269","err":"Compression failed: Size still too large (6.04MB)","msg":"VIDEO_PROCESS_ERROR"}

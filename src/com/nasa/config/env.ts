@@ -42,8 +42,8 @@ export const ENV = {
   LOG_RETENTION_DAYS: num("LOG_RETENTION_DAYS", 7),
 
   DB_HOST: str("DB_HOST", "127.0.0.1"),
-  DB_USER: str("DB_USER", "root"),
-  DB_PASS: str("DB_PASS", "Long2002@"),
+  DB_USER: str("DB_USER", "admin"),
+  DB_PASS: str("DB_PASS", "123456"),
   DB_NAME: str("DB_NAME", "auth_service"),
 
   CRAWL_TIKTOK_ENABLED: bool("CRAWL_TIKTOK_ENABLED", true),

@@ -216,7 +216,7 @@ export class TikTokCrawlService {
         }
     }
 
-    private async scanSeed(seed: string, finalDir: string, tmpDir: string, perSeedLimit: number, currentTotal: number, limit: number, testUrl?: string): Promise<number> {
+    private async scanSeed(seed: string, finalDir: string, tmpDir: string, perSeedLimit: number, currentTotal: number, limit: number): Promise<number> {
         try {
             console.log(`\n[NGUỒN] Đang quét: ${seed}`);
             let checkedCount = 0;
@@ -233,7 +233,7 @@ export class TikTokCrawlService {
                 checkedCount++;
                 console.log(`  [Lượt ${checkedCount}/${perSeedLimit}] Kiểm tra: ${url}`);
 
-                const result = await this.processSingleVideo(url, finalDir, tmpDir, testUrl);
+                const result = await this.processSingleVideo(url, finalDir, tmpDir);
                 if (result.success) {
                     savedInSeed++;
                     if (currentTotal + savedInSeed >= limit) break;
@@ -251,28 +251,30 @@ export class TikTokCrawlService {
         }
     }
 
-    public async crawlTikTokVideos(limit = 20, testUrl?: string): Promise<number> {
+    public async crawlTikTokVideos(limit = 20, seedUrl?: string): Promise<number> {
         try {
             const finalDir = path.resolve(ENV.VIDEO_DOWNLOAD_DIR || 'data/videos/raw');
             const tmpDir = path.resolve('data/videos/tmp');
             this.ensureDir(finalDir);
             this.ensureDir(tmpDir);
 
-            const seedUrls = testUrl ? [testUrl] : (ENV.TIKTOK_SEED_URLS || []);
+            // Nếu được truyền seedUrl (từ worker), chỉ crawl đúng 1 seed đó.
+            // Nếu không, lấy toàn bộ từ ENV (dùng khi chạy standalone).
+            const seedUrls = seedUrl ? [seedUrl] : (ENV.TIKTOK_SEED_URLS || []);
             if (seedUrls.length === 0) return 0;
 
-            const perSeedLimit = Math.max(10, Math.ceil(limit / seedUrls.length));
+            const perSeedLimit = limit; // Mỗi worker đã được chia limit rồi, dùng hết
             let totalSaved = 0;
 
-            console.log(`\n=== BẮT ĐẦU CÀO VIDEO (Tổng: ${limit} | Kênh: ~${perSeedLimit}) ===`);
+            console.log(`\n=== BẮT ĐẦU CÀO VIDEO [${seedUrl || 'ALL'}] (Limit: ${limit}) ===`);
 
             for (const seed of seedUrls) {
-                const saved = await this.scanSeed(seed, finalDir, tmpDir, perSeedLimit, totalSaved, limit, testUrl);
+                const saved = await this.scanSeed(seed, finalDir, tmpDir, perSeedLimit, totalSaved, limit);
                 totalSaved += saved;
                 if (totalSaved >= limit) break;
             }
 
-            console.log(`\n=== HOÀN TẤT: +${totalSaved} video ===`);
+            console.log(`\n=== HOÀN TẤT [${seedUrl || 'ALL'}]: +${totalSaved} video ===`);
             return totalSaved;
         } catch (e: any) {
             this.logger.error("CRAWL_CRITICAL_ERROR", { err: e.message });
