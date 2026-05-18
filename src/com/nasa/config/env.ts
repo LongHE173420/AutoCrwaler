@@ -30,14 +30,9 @@ function strArray(name: string, def: string[]): string[] {
 }
 
 export const ENV = {
-  KONG_URL: str("KONG_URL", "https://social.eric.pro.vn"),
 
-  INTERVAL_MS: num("INTERVAL_MS", 60_000),
-  RUN_ONCE: bool("RUN_ONCE", false),
 
   LOG_LEVEL: str("LOG_LEVEL", "debug"),
-  LOG_VERBOSE: bool("LOG_VERBOSE", false),
-  LOG_HTTP: bool("LOG_HTTP", false),
   LOG_DIR: str("LOG_DIR", "data/logs"),
   LOG_RETENTION_DAYS: num("LOG_RETENTION_DAYS", 7),
 
@@ -50,11 +45,11 @@ export const ENV = {
   CRAWL_INTERVAL_MS: num("CRAWL_INTERVAL_MS", 30 * 60_000),
   CRAWL_LIMIT: num("CRAWL_LIMIT", 20),
   VIDEO_DOWNLOAD_DIR: str("VIDEO_DOWNLOAD_DIR", path.resolve("data/videos/raw")),
-  MAX_POSTS_PER_VIDEO: num("MAX_POSTS_PER_VIDEO", 2),
+  MAX_POSTS_PER_VIDEO: num("MAX_POSTS_PER_VIDEO", 1),
 
   TIKTOK_SEED_URLS: strArray("TIKTOK_SEED_URLS", ["https://www.tiktok.com/@vtv24news", "https://www.tiktok.com/@theanh28entertainment", "https://www.tiktok.com/@beatvn.network", "https://www.tiktok.com/@vtvcab.tintuc", "https://www.tiktok.com/@tiin.vn", "https://www.tiktok.com/@dantri.com.vn"]),
   FB_SEED_URLS: strArray("FB_SEED_URLS", []),
-  TIKTOK_BROWSER: str("TIKTOK_BROWSER", "chrome"),
+  TIKTOK_BROWSER: str("TIKTOK_BROWSER", ""),
 
   DOWNLOAD_TIMEOUT_MS: num("DOWNLOAD_TIMEOUT_MS", 120_000),
   COMPRESS_TIMEOUT_MS: num("COMPRESS_TIMEOUT_MS", 300_000),

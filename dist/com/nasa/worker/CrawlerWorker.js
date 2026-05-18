@@ -1,101 +1,90 @@
-import { TikTokCrawlService } from '../service/TikTokCrawlService';
-import { FacebookCrawlService } from '../service/FacebookCrawlService';
-import { MysqlStore } from '../data/MysqlStore';
-import { ENV } from '../config/env';
-import { Log } from '../utils/log';
-
-export class CrawlerWorker {
-    private logger;
-    private crawlService: TikTokCrawlService;
-    private fbCrawlService: FacebookCrawlService;
-    private crawlRunning = false;
-    private seedUrl: string;
-    private limit: number;
-
-    constructor(seedUrl: string, limit: number) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CrawlerWorker = void 0;
+const TikTokCrawlService_1 = require("../service/TikTokCrawlService");
+const FacebookCrawlService_1 = require("../service/FacebookCrawlService");
+const MysqlStore_1 = require("../data/MysqlStore");
+const env_1 = require("../config/env");
+const log_1 = require("../utils/log");
+class CrawlerWorker {
+    constructor(seedUrl, limit) {
+        this.crawlRunning = false;
         this.seedUrl = seedUrl;
         this.limit = limit;
-
         const channelName = seedUrl.split('/').pop() || seedUrl;
-        this.logger = Log.getLogger(`Worker-${channelName}`);
-
+        this.logger = log_1.Log.getLogger(`Worker-${channelName}`);
         try {
-            this.crawlService = new TikTokCrawlService(Log.getLogger('TikTokCrawl'));
-            this.fbCrawlService = new FacebookCrawlService(Log.getLogger('FBCrawl'));
-        } catch (e: any) {
+            this.crawlService = new TikTokCrawlService_1.TikTokCrawlService(log_1.Log.getLogger('TikTokCrawl'));
+            this.fbCrawlService = new FacebookCrawlService_1.FacebookCrawlService(log_1.Log.getLogger('FBCrawl'));
+        }
+        catch (e) {
             this.logger.error("CONSTRUCTOR_FAIL", { err: e.message });
-            this.crawlService = null!;
-            this.fbCrawlService = null!;
+            this.crawlService = null;
+            this.fbCrawlService = null;
         }
     }
-
-    private async runCrawl() {
-        if (this.crawlRunning) return;
+    async runCrawl() {
+        if (this.crawlRunning)
+            return;
         this.crawlRunning = true;
         try {
             console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- CRAWL CYCLE START ---`);
-
-            const cleanup = await MysqlStore.cleanupFullyPostedVideos();
+            const cleanup = await MysqlStore_1.MysqlStore.cleanupFullyPostedVideos();
             if (cleanup.rowsFound > 0 || cleanup.rowsReset > 0) {
-                console.log(
-                    `  * Cleanup: found=${cleanup.rowsFound} deleted=${cleanup.filesDeleted} missing=${cleanup.filesMissing} reset=${cleanup.rowsReset}.`
-                );
+                console.log(`  * Cleanup: found=${cleanup.rowsFound} deleted=${cleanup.filesDeleted} missing=${cleanup.filesMissing} reset=${cleanup.rowsReset}.`);
             }
-
             let tiktokCount = 0;
-            if (ENV.CRAWL_TIKTOK_ENABLED) {
+            if (env_1.ENV.CRAWL_TIKTOK_ENABLED) {
                 this.logger.info("CRAWL_TIKTOK_START", { seedUrl: this.seedUrl, limit: this.limit });
                 tiktokCount = await this.crawlService.crawlTikTokVideos(this.limit, this.seedUrl);
                 this.logger.info("CRAWL_TIKTOK_COMPLETE", { seedUrl: this.seedUrl, savedCount: tiktokCount });
-            } else {
+            }
+            else {
                 this.logger.warn("CRAWL_TIKTOK_DISABLED_BY_CONFIG");
             }
-
             console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- CRAWL CYCLE DONE (+${tiktokCount} video) ---`);
-        } catch (e: any) {
+        }
+        catch (e) {
             this.logger.error("CRAWL_ERROR", { err: e.message });
-        } finally {
+        }
+        finally {
             this.crawlRunning = false;
         }
     }
-
-    private async runCleanup() {
+    async runCleanup() {
         try {
-            const cleanup = await MysqlStore.cleanupFullyPostedVideos();
+            const cleanup = await MysqlStore_1.MysqlStore.cleanupFullyPostedVideos();
             if (cleanup.rowsFound > 0 || cleanup.rowsReset > 0) {
                 this.logger.info("CLEANUP_SUCCESS", cleanup);
             }
-        } catch (e: any) {
+        }
+        catch (e) {
             this.logger.error("CLEANUP_ERROR", { err: e.message });
         }
     }
-
-    public async start() {
+    async start() {
         try {
-            await MysqlStore.initCrawlTables();
-
-            if (!ENV.CRAWL_TIKTOK_ENABLED) {
+            await MysqlStore_1.MysqlStore.initCrawlTables();
+            if (!env_1.ENV.CRAWL_TIKTOK_ENABLED) {
                 this.logger.warn("CRAWL_DISABLED_BY_CONFIG");
                 return;
             }
-
             await this.runCleanup();
             this.runCrawl();
-
-            const crawlInterval = ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
+            const crawlInterval = env_1.ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
             setInterval(() => this.runCrawl(), crawlInterval);
-
             const cleanupInterval = 60 * 60 * 1000;
             setInterval(() => this.runCleanup(), cleanupInterval);
-
             this.logger.info("CRAWLER_WORKER_STARTED", {
                 seedUrl: this.seedUrl,
                 limit: this.limit,
                 crawlIntervalSec: crawlInterval / 1000,
                 cleanupIntervalSec: cleanupInterval / 1000
             });
-        } catch (e: any) {
+        }
+        catch (e) {
             this.logger.error("CRAWLER_WORKER_START_FAIL", { err: e.message });
         }
     }
 }
+exports.CrawlerWorker = CrawlerWorker;

@@ -1,32 +1,53 @@
-import mysql from 'mysql2/promise';
-import { ENV } from '../config/env';
-
-export interface CrawledVideoRecord {
-    id: number;
-    localPath: string | null;
-    downloaded: number;
-    postCount: number;
-    inserted: boolean;
-}
-
-export interface CleanupResult {
-    rowsFound: number;
-    filesDeleted: number;
-    filesMissing: number;
-    rowsReset: number;
-}
-
-export class MysqlStore {
-    private static pool: mysql.Pool | null = null;
-
-    private static getPool() {
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MysqlStore = void 0;
+const promise_1 = __importDefault(require("mysql2/promise"));
+const env_1 = require("../config/env");
+class MysqlStore {
+    static getPool() {
         try {
             if (!this.pool) {
-                this.pool = mysql.createPool({
-                    host: ENV.DB_HOST,
-                    user: ENV.DB_USER,
-                    password: ENV.DB_PASS,
-                    database: ENV.DB_NAME,
+                this.pool = promise_1.default.createPool({
+                    host: env_1.ENV.DB_HOST,
+                    user: env_1.ENV.DB_USER,
+                    password: env_1.ENV.DB_PASS,
+                    database: env_1.ENV.DB_NAME,
                     waitForConnections: true,
                     connectionLimit: 10,
                     queueLimit: 0,
@@ -34,27 +55,22 @@ export class MysqlStore {
                 });
             }
             return this.pool;
-        } catch (e: any) {
+        }
+        catch (e) {
             console.error("[DB] getPool failed:", e.message);
             throw e;
         }
     }
-
-    private static async ensureColumn(pool: mysql.Pool, tableName: string, columnName: string, definition: string) {
-        const [rows]: any = await pool.execute(
-            `SELECT COUNT(*) AS count
+    static async ensureColumn(pool, tableName, columnName, definition) {
+        const [rows] = await pool.execute(`SELECT COUNT(*) AS count
              FROM INFORMATION_SCHEMA.COLUMNS
              WHERE TABLE_SCHEMA = DATABASE()
                AND TABLE_NAME = ?
-               AND COLUMN_NAME = ?`,
-            [tableName, columnName]
-        );
-
+               AND COLUMN_NAME = ?`, [tableName, columnName]);
         if (Number(rows?.[0]?.count || 0) === 0) {
             await pool.execute(`ALTER TABLE ${tableName} ADD COLUMN ${columnName} ${definition}`);
         }
     }
-
     static async initCrawlTables() {
         const pool = this.getPool();
         try {
@@ -82,56 +98,34 @@ export class MysqlStore {
                     UNIQUE KEY unique_post (video_id, account_phone)
                 )
             `);
-
             await this.ensureColumn(pool, 'crawled_videos', 'local_path', 'VARCHAR(255)');
             await this.ensureColumn(pool, 'crawled_videos', 'downloaded', 'TINYINT DEFAULT 0');
             await this.ensureColumn(pool, 'crawled_videos', 'post_count', 'INT DEFAULT 0');
-        } catch (e: any) {
+        }
+        catch (e) {
             console.error("[DB] initCrawlTables failed:", e.message);
             throw e;
         }
     }
-
-    static async saveCrawledVideo(
-        source: string,
-        sourceUrl: string,
-        videoUrl: string,
-        caption: string,
-        hashtags: string,
-        author = ''
-    ): Promise<number | null> {
+    static async saveCrawledVideo(source, sourceUrl, videoUrl, caption, hashtags, author = '') {
         const pool = this.getPool();
         try {
-            const [result]: any = await pool.execute(
-                `INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
-                 VALUES (?, ?, ?, ?, ?, ?)`,
-                [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]
-            );
-            const insertId: number = result.insertId;
-            if (insertId === 0) return null;
+            const [result] = await pool.execute(`INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
+                 VALUES (?, ?, ?, ?, ?, ?)`, [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]);
+            const insertId = result.insertId;
+            if (insertId === 0)
+                return null;
             return insertId;
-        } catch (e: any) {
+        }
+        catch (e) {
             console.error("[DB] saveCrawledVideo failed:", e.message);
             throw e;
         }
     }
-
-    static async saveOrGetCrawledVideo(
-        source: string,
-        sourceUrl: string,
-        videoUrl: string,
-        caption: string,
-        hashtags: string,
-        author = ''
-    ): Promise<CrawledVideoRecord> {
+    static async saveOrGetCrawledVideo(source, sourceUrl, videoUrl, caption, hashtags, author = '') {
         const pool = this.getPool();
-
-        const [result]: any = await pool.execute(
-            `INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]
-        );
-
+        const [result] = await pool.execute(`INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
+             VALUES (?, ?, ?, ?, ?, ?)`, [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]);
         if (result.insertId && result.insertId > 0) {
             return {
                 id: result.insertId,
@@ -141,27 +135,17 @@ export class MysqlStore {
                 inserted: true,
             };
         }
-
-        const [rows]: any = await pool.execute(
-            `SELECT id, local_path, downloaded, post_count
+        const [rows] = await pool.execute(`SELECT id, local_path, downloaded, post_count
              FROM crawled_videos
              WHERE source = ? AND source_url = ?
-             LIMIT 1`,
-            [source, sourceUrl]
-        );
-
+             LIMIT 1`, [source, sourceUrl]);
         if (!Array.isArray(rows) || rows.length === 0) {
             throw new Error(`Insert ignored but no existing crawled_videos row found for ${sourceUrl}`);
         }
-
         const row = rows[0];
-        await pool.execute(
-            `UPDATE crawled_videos
+        await pool.execute(`UPDATE crawled_videos
              SET video_url = ?, caption = ?, hashtags = ?, author = ?
-             WHERE id = ?`,
-            [videoUrl, caption || '', hashtags || '', author, row.id]
-        );
-
+             WHERE id = ?`, [videoUrl, caption || '', hashtags || '', author, row.id]);
         return {
             id: row.id,
             localPath: row.local_path || null,
@@ -170,72 +154,57 @@ export class MysqlStore {
             inserted: false,
         };
     }
-
-    static async saveLocalPath(videoId: number, localPath: string) {
+    static async saveLocalPath(videoId, localPath) {
         const pool = this.getPool();
         try {
-            await pool.execute(
-                `UPDATE crawled_videos SET local_path = ?, downloaded = 1 WHERE id = ?`,
-                [localPath, videoId]
-            );
-        } catch (e: any) {
+            await pool.execute(`UPDATE crawled_videos SET local_path = ?, downloaded = 1 WHERE id = ?`, [localPath, videoId]);
+        }
+        catch (e) {
             console.error("[DB] saveLocalPath failed:", e.message);
         }
     }
-
-    static async markVideoFailed(videoId: number) {
+    static async markVideoFailed(videoId) {
         const pool = this.getPool();
         try {
-            await pool.execute(
-                `UPDATE crawled_videos SET local_path = NULL, downloaded = 2 WHERE id = ?`,
-                [videoId]
-            );
-        } catch (e: any) {
+            await pool.execute(`UPDATE crawled_videos SET local_path = NULL, downloaded = 2 WHERE id = ?`, [videoId]);
+        }
+        catch (e) {
             console.error("[DB] markVideoFailed failed:", e.message);
         }
     }
-
-
-    static async cleanupFullyPostedVideos(): Promise<CleanupResult> {
+    static async cleanupFullyPostedVideos() {
         const pool = this.getPool();
         try {
-            const [rows]: any = await pool.execute(
-                `SELECT id, local_path, downloaded, post_count
-                 FROM crawled_videos`
-            );
+            const [rows] = await pool.execute(`SELECT id, local_path, downloaded, post_count
+                 FROM crawled_videos`);
             let rowsFound = 0;
             let filesDeleted = 0;
             let filesMissing = 0;
             let rowsReset = 0;
-            const fs = await import('fs');
-            for (const row of rows as { id: number; local_path: string | null; downloaded: number; post_count: number }[]) {
+            const fs = await Promise.resolve().then(() => __importStar(require('fs')));
+            for (const row of rows) {
                 const localPath = String(row.local_path || "").trim();
                 const downloaded = Number(row.downloaded || 0);
                 const postCount = Number(row.post_count || 0);
                 const fileExists = localPath ? fs.existsSync(localPath) : false;
                 const keepAsReusable = downloaded === 1 && !!localPath && postCount === 0 && fileExists;
-
                 if (keepAsReusable) {
                     continue;
                 }
-
                 rowsFound++;
-
                 if (localPath && fileExists) {
                     try {
                         fs.unlinkSync(localPath);
                         filesDeleted++;
-                    } catch (e: any) {
+                    }
+                    catch (e) {
                         console.error("[DB] cleanupFullyPostedVideos unlink failed:", localPath, e.message);
                     }
-                } else if (localPath) {
+                }
+                else if (localPath) {
                     filesMissing++;
                 }
-
-                const [resetRes]: any = await pool.execute(
-                    `UPDATE crawled_videos SET local_path = NULL, downloaded = 0 WHERE id = ?`,
-                    [row.id]
-                );
+                const [resetRes] = await pool.execute(`UPDATE crawled_videos SET local_path = NULL, downloaded = 0 WHERE id = ?`, [row.id]);
                 rowsReset += Number(resetRes?.affectedRows || 0);
             }
             return {
@@ -244,7 +213,8 @@ export class MysqlStore {
                 filesMissing,
                 rowsReset,
             };
-        } catch (e: any) {
+        }
+        catch (e) {
             console.error("[DB] cleanupFullyPostedVideos failed:", e.message);
             return {
                 rowsFound: 0,
@@ -255,3 +225,5 @@ export class MysqlStore {
         }
     }
 }
+exports.MysqlStore = MysqlStore;
+MysqlStore.pool = null;

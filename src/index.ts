@@ -19,18 +19,19 @@ async function main() {
 
         const runCleanup = async () => {
             try {
-                const deleted = await MysqlStore.cleanupFullyPostedVideos();
-                if (deleted > 0) {
-                    console.log(`[Master] Đã dọn dẹp ${deleted} video cũ.`);
+                const cleanup = await MysqlStore.cleanupFullyPostedVideos();
+                if (cleanup.rowsFound > 0 || cleanup.rowsReset > 0) {
+                    console.log(
+                        `[Master] Cleanup: found=${cleanup.rowsFound} deleted=${cleanup.filesDeleted} missing=${cleanup.filesMissing} reset=${cleanup.rowsReset}.`
+                    );
                 }
             } catch (e: any) {
                 console.error(`[Master Cleanup Error] ${e.message}`);
             }
         };
-        
+
         const cleanupInterval = 60 * 60 * 1000;
         setInterval(runCleanup, cleanupInterval);
-
     } catch (err: any) {
         console.error('Failed to start system:', err.message);
         process.exit(1);
