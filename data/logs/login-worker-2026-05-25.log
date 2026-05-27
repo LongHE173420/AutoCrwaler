@@ -1,0 +1,12 @@
+{"level":30,"time":"08:24:37.088","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"08:24:37.088","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"08:24:37.088","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@vtvcab.congnghe.onlive","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"08:24:37.088","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@anhem.news","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"08:24:37.678","app":"TikTokCrawlerMaster","logger":"Worker-@vtvcab.congnghe.onlive","rowsFound":56,"filesDeleted":0,"filesMissing":52,"rowsReset":56,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"08:24:37.695","app":"TikTokCrawlerMaster","logger":"Worker-@vtvcab.congnghe.onlive","seedUrl":"https://www.tiktok.com/@vtvcab.congnghe.onlive","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"08:24:37.695","app":"TikTokCrawlerMaster","logger":"Worker-@anhem.news","rowsFound":56,"filesDeleted":0,"filesMissing":52,"rowsReset":56,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"08:24:37.696","app":"TikTokCrawlerMaster","logger":"Worker-@anhem.news","seedUrl":"https://www.tiktok.com/@anhem.news","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"08:24:37.974","app":"TikTokCrawlerMaster","logger":"Worker-@vtvcab.congnghe.onlive","seedUrl":"https://www.tiktok.com/@vtvcab.congnghe.onlive","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"08:24:38.002","app":"TikTokCrawlerMaster","logger":"Worker-@anhem.news","seedUrl":"https://www.tiktok.com/@anhem.news","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"08:25:27.168","app":"TikTokCrawlerMaster","logger":"Worker-@vtvcab.congnghe.onlive","seedUrl":"https://www.tiktok.com/@vtvcab.congnghe.onlive","savedCount":5,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":30,"time":"08:25:27.993","app":"TikTokCrawlerMaster","logger":"Worker-@anhem.news","seedUrl":"https://www.tiktok.com/@anhem.news","savedCount":5,"msg":"CRAWL_TIKTOK_COMPLETE"}

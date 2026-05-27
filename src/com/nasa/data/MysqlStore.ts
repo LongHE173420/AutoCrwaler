@@ -18,6 +18,7 @@ export interface CleanupResult {
 
 export class MysqlStore {
     private static pool: mysql.Pool | null = null;
+    private static readonly CRAWLED_VIDEOS_TABLE = 'crawled_videos1';
 
     private static getPool() {
         try {
@@ -40,52 +41,9 @@ export class MysqlStore {
         }
     }
 
-    private static async ensureColumn(pool: mysql.Pool, tableName: string, columnName: string, definition: string) {
-        const [rows]: any = await pool.execute(
-            `SELECT COUNT(*) AS count
-             FROM INFORMATION_SCHEMA.COLUMNS
-             WHERE TABLE_SCHEMA = DATABASE()
-               AND TABLE_NAME = ?
-               AND COLUMN_NAME = ?`,
-            [tableName, columnName]
-        );
-
-        if (Number(rows?.[0]?.count || 0) === 0) {
-            await pool.execute(`ALTER TABLE ${tableName} ADD COLUMN ${columnName} ${definition}`);
-        }
-    }
-
     static async initCrawlTables() {
-        const pool = this.getPool();
         try {
-            await pool.execute(`
-                CREATE TABLE IF NOT EXISTS crawled_videos (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    source VARCHAR(50),
-                    source_url VARCHAR(255) UNIQUE,
-                    video_url TEXT,
-                    caption TEXT,
-                    hashtags TEXT,
-                    author VARCHAR(100),
-                    local_path VARCHAR(255),
-                    downloaded TINYINT DEFAULT 0,
-                    post_count INT DEFAULT 0,
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                )
-            `);
-            await pool.execute(`
-                CREATE TABLE IF NOT EXISTS video_post_log (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    video_id INT,
-                    account_phone VARCHAR(20),
-                    posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    UNIQUE KEY unique_post (video_id, account_phone)
-                )
-            `);
-
-            await this.ensureColumn(pool, 'crawled_videos', 'local_path', 'VARCHAR(255)');
-            await this.ensureColumn(pool, 'crawled_videos', 'downloaded', 'TINYINT DEFAULT 0');
-            await this.ensureColumn(pool, 'crawled_videos', 'post_count', 'INT DEFAULT 0');
+            this.getPool();
         } catch (e: any) {
             console.error("[DB] initCrawlTables failed:", e.message);
             throw e;
@@ -101,9 +59,10 @@ export class MysqlStore {
         author = ''
     ): Promise<number | null> {
         const pool = this.getPool();
+        const tableName = this.CRAWLED_VIDEOS_TABLE;
         try {
             const [result]: any = await pool.execute(
-                `INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
+                `INSERT IGNORE INTO ${tableName} (source, source_url, video_url, caption, hashtags, author)
                  VALUES (?, ?, ?, ?, ?, ?)`,
                 [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]
             );
@@ -125,9 +84,10 @@ export class MysqlStore {
         author = ''
     ): Promise<CrawledVideoRecord> {
         const pool = this.getPool();
+        const tableName = this.CRAWLED_VIDEOS_TABLE;
 
         const [result]: any = await pool.execute(
-            `INSERT IGNORE INTO crawled_videos (source, source_url, video_url, caption, hashtags, author)
+            `INSERT IGNORE INTO ${tableName} (source, source_url, video_url, caption, hashtags, author)
              VALUES (?, ?, ?, ?, ?, ?)`,
             [source, sourceUrl, videoUrl, caption || '', hashtags || '', author]
         );
@@ -144,19 +104,19 @@ export class MysqlStore {
 
         const [rows]: any = await pool.execute(
             `SELECT id, local_path, downloaded, post_count
-             FROM crawled_videos
+             FROM ${tableName}
              WHERE source = ? AND source_url = ?
              LIMIT 1`,
             [source, sourceUrl]
         );
 
         if (!Array.isArray(rows) || rows.length === 0) {
-            throw new Error(`Insert ignored but no existing crawled_videos row found for ${sourceUrl}`);
+            throw new Error(`Insert ignored but no existing ${tableName} row found for ${sourceUrl}`);
         }
 
         const row = rows[0];
         await pool.execute(
-            `UPDATE crawled_videos
+            `UPDATE ${tableName}
              SET video_url = ?, caption = ?, hashtags = ?, author = ?
              WHERE id = ?`,
             [videoUrl, caption || '', hashtags || '', author, row.id]
@@ -173,9 +133,10 @@ export class MysqlStore {
 
     static async saveLocalPath(videoId: number, localPath: string) {
         const pool = this.getPool();
+        const tableName = this.CRAWLED_VIDEOS_TABLE;
         try {
             await pool.execute(
-                `UPDATE crawled_videos SET local_path = ?, downloaded = 1 WHERE id = ?`,
+                `UPDATE ${tableName} SET local_path = ?, downloaded = 1 WHERE id = ?`,
                 [localPath, videoId]
             );
         } catch (e: any) {
@@ -185,9 +146,10 @@ export class MysqlStore {
 
     static async markVideoFailed(videoId: number) {
         const pool = this.getPool();
+        const tableName = this.CRAWLED_VIDEOS_TABLE;
         try {
             await pool.execute(
-                `UPDATE crawled_videos SET local_path = NULL, downloaded = 2 WHERE id = ?`,
+                `UPDATE ${tableName} SET local_path = NULL, downloaded = 2 WHERE id = ?`,
                 [videoId]
             );
         } catch (e: any) {
@@ -198,10 +160,11 @@ export class MysqlStore {
 
     static async cleanupFullyPostedVideos(): Promise<CleanupResult> {
         const pool = this.getPool();
+        const tableName = this.CRAWLED_VIDEOS_TABLE;
         try {
             const [rows]: any = await pool.execute(
                 `SELECT id, local_path, downloaded, post_count
-                 FROM crawled_videos`
+                 FROM ${tableName}`
             );
             let rowsFound = 0;
             let filesDeleted = 0;
@@ -233,7 +196,7 @@ export class MysqlStore {
                 }
 
                 const [resetRes]: any = await pool.execute(
-                    `UPDATE crawled_videos SET local_path = NULL, downloaded = 0 WHERE id = ?`,
+                    `UPDATE ${tableName} SET local_path = NULL, downloaded = 0 WHERE id = ?`,
                     [row.id]
                 );
                 rowsReset += Number(resetRes?.affectedRows || 0);

@@ -1,0 +1,81 @@
+{"level":30,"time":"05:24:51.037","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"05:24:51.037","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"05:24:51.038","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:24:51.038","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"05:25:07.417","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","rowsFound":1445,"filesDeleted":0,"filesMissing":1090,"rowsReset":1445,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"05:25:07.434","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:25:07.434","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","rowsFound":1445,"filesDeleted":0,"filesMissing":1090,"rowsReset":1445,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"05:25:07.435","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"05:25:22.371","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"05:25:22.414","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"05:25:55.216","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"05:26:35.263","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7638610934486928647","err":"Video too large to compress: 33.12MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"05:26:40.850","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@utnhodecor/video/7638565548611128594","err":"Compression failed: Size still too large (5.39MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"05:26:54.195","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","savedCount":4,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"05:27:04.877","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7636780393928133896","err":"Compression failed: Size still too large (5.50MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"05:27:12.706","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","savedCount":2,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":30,"time":"06:32:14.822","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"06:32:14.823","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"06:32:14.823","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"06:32:14.824","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"06:32:32.313","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","rowsFound":1445,"filesDeleted":0,"filesMissing":0,"rowsReset":1445,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"06:32:32.332","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"06:32:32.418","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","rowsFound":1445,"filesDeleted":0,"filesMissing":0,"rowsReset":1445,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"06:32:32.419","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"06:32:49.861","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"06:32:49.981","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"06:33:15.232","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:19:45.291","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"07:19:45.292","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"07:19:45.292","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:19:45.292","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:19:45.407","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:19:45.420","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"07:19:45.481","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:19:45.496","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"07:20:11.273","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:20:51.101","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@utnhodecor/video/7638565548611128594","err":"Compression failed: Size still too large (5.39MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:20:53.686","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7638610934486928647","err":"Video too large to compress: 33.12MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:24:07.582","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"07:24:07.583","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"07:24:07.583","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:24:07.583","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:24:07.823","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","rowsFound":8,"filesDeleted":4,"filesMissing":0,"rowsReset":8,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:24:07.839","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:24:07.880","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","rowsFound":8,"filesDeleted":0,"filesMissing":2,"rowsReset":8,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:24:07.881","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:24:07.957","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"07:24:08.028","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"07:24:38.268","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:25:30.178","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7638610934486928647","err":"Video too large to compress: 33.12MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:25:40.420","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@utnhodecor/video/7638565548611128594","err":"Compression failed: Size still too large (5.39MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:26:01.493","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"07:26:01.494","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"07:26:01.494","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:26:01.494","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:26:01.728","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","rowsFound":9,"filesDeleted":0,"filesMissing":4,"rowsReset":9,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:26:01.746","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:26:01.798","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","rowsFound":9,"filesDeleted":0,"filesMissing":2,"rowsReset":9,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:26:01.799","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:26:01.874","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"07:26:01.958","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"07:26:40.387","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:27:36.715","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@utnhodecor/video/7638565548611128594","err":"Compression failed: Size still too large (5.39MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:27:42.177","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7638610934486928647","err":"Video too large to compress: 33.12MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:27:46.486","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","savedCount":4,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":50,"time":"07:28:12.976","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7636780393928133896","err":"Compression failed: Size still too large (5.50MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:28:21.587","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","savedCount":2,"msg":"CRAWL_TIKTOK_COMPLETE"}
+{"level":30,"time":"07:30:12.417","app":"TikTokCrawlerMaster","logger":"MasterWorker","enabled":true,"seedsCount":2,"msg":"MASTER_WORKER_STARTING"}
+{"level":30,"time":"07:30:12.417","app":"TikTokCrawlerMaster","logger":"MasterWorker","totalLimit":10,"perWorkerLimit":5,"totalWorkers":2,"msg":"DISTRIBUTING_CRAWL_LIMIT"}
+{"level":30,"time":"07:30:12.417","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:30:12.417","app":"TikTokCrawlerMaster","logger":"MasterWorker","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"SPAWNED_WORKER_FOR_CHANNEL"}
+{"level":30,"time":"07:30:12.633","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","rowsFound":9,"filesDeleted":3,"filesMissing":2,"rowsReset":9,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:30:12.649","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:30:12.650","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","rowsFound":9,"filesDeleted":2,"filesMissing":3,"rowsReset":9,"msg":"CLEANUP_SUCCESS"}
+{"level":30,"time":"07:30:12.650","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"crawlIntervalSec":600,"cleanupIntervalSec":3600,"msg":"CRAWLER_WORKER_STARTED"}
+{"level":30,"time":"07:30:12.774","app":"TikTokCrawlerMaster","logger":"Worker-@nghien.setups","seedUrl":"https://www.tiktok.com/@nghien.setups","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":30,"time":"07:30:12.788","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","limit":5,"msg":"CRAWL_TIKTOK_START"}
+{"level":50,"time":"07:30:40.568","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7640112840027753746","err":"Compression failed: Size still too large (6.30MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:31:04.291","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@nghien.setups/video/7638610934486928647","err":"Video too large to compress: 33.12MB > 10MB","msg":"VIDEO_PROCESS_ERROR"}
+{"level":50,"time":"07:31:09.158","app":"TikTokCrawlerMaster","logger":"TikTokCrawl","url":"https://www.tiktok.com/@utnhodecor/video/7638565548611128594","err":"Compression failed: Size still too large (5.39MB)","msg":"VIDEO_PROCESS_ERROR"}
+{"level":30,"time":"07:31:15.720","app":"TikTokCrawlerMaster","logger":"Worker-@utnhodecor","seedUrl":"https://www.tiktok.com/@utnhodecor","savedCount":0,"msg":"CRAWL_TIKTOK_COMPLETE"}

@@ -29,8 +29,15 @@ export class CrawlerWorker {
         }
     }
 
+    private sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     private async runCrawl() {
-        if (this.crawlRunning) return;
+        if (this.crawlRunning) {
+            this.logger.warn("CRAWL_SKIPPED_ALREADY_RUNNING", { seedUrl: this.seedUrl });
+            return;
+        }
         this.crawlRunning = true;
         try {
             console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- CRAWL CYCLE START ---`);
@@ -59,6 +66,15 @@ export class CrawlerWorker {
         }
     }
 
+    private startCrawlLoop(crawlInterval: number) {
+        void (async () => {
+            while (true) {
+                await this.runCrawl();
+                await this.sleep(crawlInterval);
+            }
+        })();
+    }
+
     private async runCleanup() {
         try {
             const cleanup = await MysqlStore.cleanupFullyPostedVideos();
@@ -80,10 +96,9 @@ export class CrawlerWorker {
             }
 
             await this.runCleanup();
-            this.runCrawl();
 
             const crawlInterval = ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
-            setInterval(() => this.runCrawl(), crawlInterval);
+            this.startCrawlLoop(crawlInterval);
 
             const cleanupInterval = 60 * 60 * 1000;
             setInterval(() => this.runCleanup(), cleanupInterval);

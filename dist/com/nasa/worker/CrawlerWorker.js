@@ -23,9 +23,14 @@ class CrawlerWorker {
             this.fbCrawlService = null;
         }
     }
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     async runCrawl() {
-        if (this.crawlRunning)
+        if (this.crawlRunning) {
+            this.logger.warn("CRAWL_SKIPPED_ALREADY_RUNNING", { seedUrl: this.seedUrl });
             return;
+        }
         this.crawlRunning = true;
         try {
             console.log(`\n[${new Date().toLocaleString()}] [${this.seedUrl}] --- CRAWL CYCLE START ---`);
@@ -51,6 +56,14 @@ class CrawlerWorker {
             this.crawlRunning = false;
         }
     }
+    startCrawlLoop(crawlInterval) {
+        void (async () => {
+            while (true) {
+                await this.runCrawl();
+                await this.sleep(crawlInterval);
+            }
+        })();
+    }
     async runCleanup() {
         try {
             const cleanup = await MysqlStore_1.MysqlStore.cleanupFullyPostedVideos();
@@ -70,9 +83,8 @@ class CrawlerWorker {
                 return;
             }
             await this.runCleanup();
-            this.runCrawl();
             const crawlInterval = env_1.ENV.CRAWL_INTERVAL_MS || 30 * 60 * 1000;
-            setInterval(() => this.runCrawl(), crawlInterval);
+            this.startCrawlLoop(crawlInterval);
             const cleanupInterval = 60 * 60 * 1000;
             setInterval(() => this.runCleanup(), cleanupInterval);
             this.logger.info("CRAWLER_WORKER_STARTED", {

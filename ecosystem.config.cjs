@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "tiktok-crawler",
+      name: "tiktoke-crawler1",
       cwd: __dirname,
       script: "dist/index.js",
       exec_mode: "fork",

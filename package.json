@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-crawler",
+  "name": "tiktoke-crawler1",
   "version": "1.0.0",
   "description": "Standalone TikTok Crawler for AutoEric project",
   "main": "dist/index.js",
@@ -9,11 +9,11 @@
     "start:dev": "ts-node src/index.ts",
     "start:prod": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "pm2:start": "pm2 start ecosystem.config.cjs --only tiktok-crawler",
-    "pm2:restart": "pm2 restart tiktok-crawler",
-    "pm2:stop": "pm2 stop tiktok-crawler",
-    "pm2:delete": "pm2 delete tiktok-crawler",
-    "pm2:logs": "pm2 logs tiktok-crawler"
+    "pm2:start": "pm2 start ecosystem.config.cjs --only tiktoke-crawler1",
+    "pm2:restart": "pm2 restart tiktoke-crawler1",
+    "pm2:stop": "pm2 stop tiktoke-crawler1",
+    "pm2:delete": "pm2 delete tiktoke-crawler1",
+    "pm2:logs": "pm2 logs tiktoke-crawler1"
   },
   "dependencies": {
     "axios": "^1.6.2",
